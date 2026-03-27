@@ -138,7 +138,7 @@ Node* insertBeforeHead ( Node* head, int data ) {
 
 Node* insertBeforeTail ( Node* head, int data ) {
     if ( head->next == nullptr ) {
-        return insertBeforeHead(head, data)
+        return insertBeforeHead(head, data);
     }
     Node* tail = head;
     while ( tail->next != nullptr ) {
@@ -149,6 +149,22 @@ Node* insertBeforeTail ( Node* head, int data ) {
     back->next = newNode;
     tail->prev = newNode;
     return head;
+}
+
+Node* insertBeforeKthElement ( Node* head ,int k, int data ) {
+    Node* temp = head;
+    int cnt = 0;
+    while ( temp != NULL) {
+        cnt++;
+        if ( cnt == k ) break;
+        temp = temp->next;
+    }
+    Node* back = temp->prev;
+    Node* newNode = new Node(data, temp, back);
+    back->next = newNode;
+    temp->prev = newNode;
+    return head;
+    
 }
 
 int main() {
@@ -172,7 +188,8 @@ int main() {
     // printDLL(head);
     // deleteNode(head->next->next->next->next);
     // Node* newHead = insertBeforeHead(head, 21);
-    Node* newHead = insertBeforeTail(head, 41);
+    // Node* newHead = insertBeforeTail(head, 41);
+    Node* newHead = insertBeforeKthElement(head, 5, 325);
     printDLL(newHead);
     
 
