@@ -1,3 +1,5 @@
+//brute
+
 class Solution {
 public:
     bool isPalindrome(string s) {
@@ -18,5 +20,39 @@ public:
         if (s3 == s2) return true;
         
         else return false;
+    }
+};
+
+// optimal
+
+class Solution {
+public:
+
+    bool isAlphaNum ( char ch ) {
+        if ( ch >= '0' && ch <= '9' || tolower(ch) >= 'a' && tolower(ch) <= 'z' ) {
+            return true;
+        }
+        return false;
+    }
+
+    bool isPalindrome(string s) {
+        int ptr1 = 0;
+        int ptr2 = s.length()-1;
+        while ( ptr2 > ptr1 ) {
+            if( !isAlphaNum(s[ptr1]) ) {
+                ptr1++;
+                continue;
+            }
+            if( !isAlphaNum(s[ptr2]) ) {
+                ptr2--;
+                continue;
+            }
+            if ( tolower(s[ptr1]) != tolower(s[ptr2]) ) {
+                return false;
+            }
+            ptr1++;
+            ptr2--;
+        }
+        return true;
     }
 };
