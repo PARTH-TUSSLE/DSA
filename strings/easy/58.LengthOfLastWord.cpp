@@ -1,0 +1,36 @@
+//bruute
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        vector<string> words;
+        string word;
+
+        stringstream ss(s);
+
+        while (ss >> word) {
+            words.push_back(word);
+        }
+        return words[words.size()-1].length();
+    }
+};
+
+// optimal
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int n = s.length();
+
+        int i = n - 1;
+
+        while (i >= 0 && s[i] == ' ')
+            i--;
+
+        int length = 0;
+        while (i >= 0 && s[i] != ' ') {
+            i--;
+            length++;
+        }
+
+        return length;
+    }
+};
